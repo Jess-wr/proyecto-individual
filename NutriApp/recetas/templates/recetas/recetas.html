@@ -1,0 +1,72 @@
+{% extends 'recetas/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Publicaciones de recetas -->
+            {% for receta in recetas %}
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {% if receta.imagen %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{{ receta.imagen.url }}" alt="{{ receta.titulo }}" class="img-fluid">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p>Publicado por: {{ receta.usuario.nombre }}</p>
+                            <h5 class="card-title">{{ receta.titulo }}</h5>
+                            <h6>Ingredientes</h6>
+                            <p class="card-text">{{ receta.ingredientes }}</p>
+                            <h6>Sigue estas instrucciones</h6>
+                            <p class="card-text">{{ receta.instrucciones }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Verificar si el usuario actual es el creador de la receta -->
+                    {% if receta.usuario_id == request.session.usuario.id %}
+                    <a href="{% url 'editar_receta' receta.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'eliminar_receta' receta.id %}" class="btn btn-primary">Eliminar</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Paginación -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if recetas.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">&laquo; Primera</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ recetas.previous_page_number }}">Anterior</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="page-item disabled">
+                        <span class="page-link">Página {{ recetas.number }} de {{ recetas.paginator.num_pages }}</span>
+                    </li>
+
+                    {% if recetas.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ recetas.next_page_number }}">Siguiente</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ recetas.paginator.num_pages }}">Última &raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

@@ -6,7 +6,7 @@ def login_requerido(function):
 
         if 'usuario' not in request.session:
             messages.error(request, 'Debes iniciar sesion con tu cuenta!')
-            return redirect('/registro/login/')
+            return redirect('/acceso/login/')
 
         return function(request, *args, **kwargs)
 

@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from usuarios.utils.decoradores import login_requerido
+from decorator_include import decorator_include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('acceso/', include('usuarios.urls')),
+    path('receta/', decorator_include(login_requerido,include('recetas.urls'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

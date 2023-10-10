@@ -3,7 +3,7 @@
 {% block title %} Iniciar Sesion {% endblock %}
 
 {% block content %}
-<h1 class="text-center text-success">Un lugar saludable, Bienvenido</h1>
+<h1 class="text-center text-success">Un lugar saludable, Bienvenido{{request.session.usuario.id}}</h1>
 <a href="acceso/logout" class="text-success"> Cerrar Sesion</a>
 <hr>
 </div>

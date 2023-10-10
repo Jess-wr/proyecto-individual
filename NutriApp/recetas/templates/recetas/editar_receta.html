@@ -1,0 +1,34 @@
+{% extends 'recetas/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Editar Receta</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.titulo.id_for_label }}">Título de la receta</label>
+            {{ form.titulo }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.ingredientes.id_for_label }}">Ingredientes</label>
+            {{ form.ingredientes }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.instrucciones.id_for_label }}">Instrucciones para la receta</label>
+            {{ form.instrucciones }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.imagen.field.id_for_label }}">Imagen</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-camera"></i>
+                    </span>
+                </div>
+                {{ form.imagen }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+{% endblock %}
