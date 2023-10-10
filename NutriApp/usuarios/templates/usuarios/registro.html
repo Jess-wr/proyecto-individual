@@ -1,0 +1,37 @@
+{% extends "usuarios/base.html" %}
+{% block title %} Registrarse {% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-5">
+            <h1 class="text-success">Registrarse</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Nombre" value="{{request.session.registro_nombre}}">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-sm" id="apellido" name="apellido" placeholder="Apellido" value="{{request.session.registro_apellido}}">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email" value="{{request.session.registro_email}}">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Contraseña">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control form-control-sm" name="confirmar_password" placeholder="Confirmar Contraseña">
+                </div>
+
+                <button type="submit" class="btn btn-success btn-sm">Registrar</button>
+            </form>
+            <p class="mt-2 text-center">
+                ¿Ya tienes una cuenta? <a href="/acceso/login/" class="text-success">Iniciar Sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock%}
