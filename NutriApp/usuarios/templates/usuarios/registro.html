@@ -1,4 +1,4 @@
-{% extends "usuarios/base.html" %}
+{% extends "base.html" %}
 {% block title %} Registrarse {% endblock %}
 
 {% block content %}
@@ -29,7 +29,7 @@
                 <button type="submit" class="btn btn-success btn-sm">Registrar</button>
             </form>
             <p class="mt-2 text-center">
-                ¿Ya tienes una cuenta? <a href="/acceso/login/" class="text-success">Iniciar Sesión</a>
+                ¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-success">Iniciar Sesión</a>
             </p>
         </div>
     </div>

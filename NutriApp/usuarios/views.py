@@ -3,13 +3,13 @@ from django.contrib import messages
 from .models import Usuario
 import bcrypt
 def inicio(request):
-    return render(request, 'usuarios/inicio.html')
+    return render(request, 'principal/index.html')
 def registro(request):
     if request.method == 'GET':
 
         if 'usuario' in request.session:
             messages.warning(request,"Ya estás registrado.")
-            return redirect("/acceso/inicio")
+            return redirect("/")
 
 
         context = {}
@@ -53,7 +53,7 @@ def login(request):
 
         if 'usuario' in request.session:
             messages.warning(request,"Ya iniciaste Sesion")
-            return redirect("/acceso/inicio")
+            return redirect("/")
 
         context = {}
         return render(request, 'usuarios/login.html', context)
@@ -75,7 +75,7 @@ def login(request):
                 print('El usuario de la sesion', usuario_session)
                 request.session['usuario'] = usuario_session
                 messages.success(request, "Haz iniciado sesion!")
-                return redirect('/acceso/inicio')
+                return redirect('/')
             else:
                 messages.error(request, "La contraseña o el correo no coinciden")
                 return redirect("/acceso/login")

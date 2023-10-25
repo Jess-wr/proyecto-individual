@@ -1,10 +1,10 @@
-{% extends 'recetas/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2>Agregar Receta {{ request.session.usuario.id }}</h2>
+            <h2>Nueva Receta de {{ request.session.usuario.nombre }}</h2>
 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}

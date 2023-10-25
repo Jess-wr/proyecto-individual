@@ -23,6 +23,7 @@ from decorator_include import decorator_include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('principal.urls')),
     path('acceso/', include('usuarios.urls')),
     path('receta/', decorator_include(login_requerido,include('recetas.urls'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

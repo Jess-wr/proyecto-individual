@@ -1,15 +1,14 @@
-{% extends "usuarios/base.html" %}
+{% extends "base.html" %}
 
 {% block title %} Iniciar Sesion {% endblock %}
 
 {% block content %}
-<h1 class="text-center text-success">Un lugar saludable</h1>
 <hr>
 <div class="row">
     <div class="col-6">
         <div id="forms-container">
             <!-- Formulario de inicio de sesión -->
-            <form id="loginForm" class="border border-light p-5" method="post">
+            <form id="loginForm" class="border border-light p-5 bg-light" method="post">
                 {% csrf_token %}
                 <p class="h4 mb-4">Iniciar Sesión</p>
                 <input type="email" name="email" class="form-control mb-4" placeholder="Correo Electrónico">

@@ -6,36 +6,29 @@
         <div class="col-md-8">
             <!-- Publicaciones de recetas -->
             {% for receta in recetas %}
-                {% if receta.usuario_id == request.session.usuario.id %}
-                <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            {% if receta.imagen %}
-                            <div class="d-flex justify-content-center align-items-center">
-                                <img src="{{ receta.imagen.url }}" alt="{{ receta.titulo }}" class="img-fluid">
-                            </div>
-                            {% endif %}
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {% if receta.imagen %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{{ receta.imagen.url }}" alt="{{ receta.titulo }}" class="img-fluid">
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <p>Publicado por: {{ receta.usuario.nombre }}</p>
-                                <h5 class="card-title">{{ receta.titulo }}</h5>
-                                <h6>Ingredientes</h6>
-                                <p class="card-text">{{ receta.ingredientes }}</p>
-                                <h6>Sigue estas instrucciones</h6>
-                                <p class="card-text">{{ receta.instrucciones }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- Verificar si el usuario actual es el creador de la receta -->
-                        {% if receta.usuario_id == request.session.usuario.id %}
-                        <a href="{% url 'editar_receta' receta.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'eliminar_receta' receta.id %}" class="btn btn-primary">Eliminar</a>
                         {% endif %}
                     </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p>Publicado por: {{ receta.usuario.nombre }}</p>
+                            <h5 class="card-title">{{ receta.titulo }}</h5>
+                            <h6>Ingredientes</h6>
+                            <p class="card-text">{{ receta.ingredientes }}</p>
+                            <h6>Sigue estas instrucciones</h6>
+                            <p class="card-text">{{ receta.instrucciones }}</p>
+                        </div>
+                    </div>
                 </div>
-                {% endif %}
+            </div>
             {% endfor %}
+
             <!-- Paginación -->
             <nav aria-label="Page navigation">
                 <ul class="pagination">
